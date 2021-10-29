@@ -1,5 +1,7 @@
 from datetime import datetime
 
+class OrderItem:
+    pass
 
 class Order:
     """
@@ -19,6 +21,7 @@ class Order:
         self.__id = _id                   # private, final attribute, cannot be altered
         self.customer_id = _customer_id
         self.date = _date
+        self.items = []
 
     def get_id(self) -> int:
         """
@@ -26,8 +29,36 @@ class Order:
         :return: order identifier
         """
         return self.__id
-    # TODO: complete class
 
+    def get_customer_id(self) -> int:
+        """
+        
+        """
+        return self.customer_id
+
+    def get_gate(self) -> int:
+        """
+     
+        """
+        return self.date
+
+    def add_item(self, sku: str, units: int) -> int:
+        """
+       
+        """
+        self.items.append(OrderItem(sku,units))
+
+    def items_count(self) -> int:
+        """
+
+        """
+        return len(self.items)
+
+    def get_item(self, i: int) -> OrderItem:
+            """
+        
+            """
+            return self.items[i]
 
 class OrderItem:
     def __init__(self, _sku: str, _units: int):

@@ -15,7 +15,7 @@ class StockDataStore:
         self.__data = {}  # data dictionary, private, final, cannot be altered
 
     def add_stock(self, _stock: Stock):
-        self.__data[_stock.get_id()] = _stock
+        self.__data[_stock.get_sku()] = _stock
 
     def remove_stock(self, _stock_id: int):
         self.__data.pop(_stock_id, None)  # remove key from dict, return object if key existed or None otherwise
@@ -23,8 +23,8 @@ class StockDataStore:
     def size(self) -> int:
         return len(self.__data)
 
-    def find_stock_by_id(self, _id: int) -> Stock:
-        return self.__data.get(_id)  # get(key) returns None if key is not found
+    def find_stock_by_sku(self, _sku: int) -> Stock:
+        return self.__data.get(_sku)  # get(key) returns None if key is not found
 
     def find_all_stocks(self) -> []:
         return list(self.__data.values())

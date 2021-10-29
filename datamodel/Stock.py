@@ -14,14 +14,14 @@ class Stock:
         """
         self.__sku = _id                            # private, final, cannot be altered
         self.description = _description
-        #self.__price = 0                            # private
-        #self.set_price(_price)
-        #self.__units_available = _units_available   # private
+        self.price = _price                            # private
+        self.units_available = _units_available   # private
 
-    def get_id(self) -> int:
+    def get_sku(self) -> int:
         """
         id getter, returns private order identifier
         :return: order identifier
         """
         return self.__sku
     # TODO: complete class
+
