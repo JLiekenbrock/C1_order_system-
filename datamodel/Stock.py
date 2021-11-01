@@ -14,8 +14,8 @@ class Stock:
         """
         self.__sku = _id                            # private, final, cannot be altered
         self.description = _description
-        self.price = _price                            # private
-        self.units_available = _units_available   # private
+        self.__price = _price                            # private
+        self.__units_available = _units_available   # private
 
     def get_sku(self) -> int:
         """
@@ -23,5 +23,40 @@ class Stock:
         :return: order identifier
         """
         return self.__sku
+        
+    def get_price(self) -> int:
+        """
+        price getter, returns price
+        :return: order price
+        """
+        return self.__price
+            
+    def set_price(self, _price) -> int:
+        """
+        price setter, sets price
+        """
+        self.__price = _price
+
+    def get_units_availalbe(self) -> int:
+        """
+        units available getter, returns number of available units
+        :return: number of available units
+        """
+        return self.__units_available
+
+    def has_units_availalbe(self) -> bool:
+        """
+        units available getter, returns wheter units are available
+        :return: are units availabe
+        """
+        return self.__units_available > 0
+
+    def transact_units(self, _n: int) -> bool:
+        """
+        transact units
+        :return: are units availabe
+        """
+        return self.__units_available > 0
+
     # TODO: complete class
 

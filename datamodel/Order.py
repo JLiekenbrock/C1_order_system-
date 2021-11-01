@@ -14,14 +14,12 @@ class Order:
         Constructor
         :param _id: stock keeping unit (SKU) (private, final, cannot be altered)
         :param _description: description of article or stock unit
-        :param _price: price (private, in cent)
-        :param _units_available: units available in stock (private)
-        :param _category: stock category
+        :param _date: date of order, defaults to 0
         """
         self.__id = _id                   # private, final attribute, cannot be altered
-        self.customer_id = _customer_id
-        self.date = _date
-        self.items = []
+        self.__customer_id = _customer_id
+        self.__date = _date
+        self.__items = []
 
     def get_id(self) -> int:
         """
@@ -32,33 +30,36 @@ class Order:
 
     def get_customer_id(self) -> int:
         """
-        
+        customer id getter, returns private customer identifier
+        :return: customer identifier
         """
-        return self.customer_id
+        return self.__customer_id
 
-    def get_gate(self) -> int:
+    def get_date(self) -> int:
         """
-     
+        order date getter, returns private order date
+        :return: order date
         """
-        return self.date
+        return self.__date
 
-    def add_item(self, sku: str, units: int) -> int:
+    def add_item(self, _sku: str, _units: int) -> int:
+        """  
         """
-       
-        """
-        self.items.append(OrderItem(sku,units))
+        self.__items.append(OrderItem(_sku,_units))
 
     def items_count(self) -> int:
         """
-
+        number of items counter, returns number of items in order
+        :return: number of items in order
         """
-        return len(self.items)
+        return len(self.__items)
 
     def get_item(self, i: int) -> OrderItem:
-            """
-        
-            """
-            return self.items[i]
+        """
+        item getter, returns Order item by index
+        :return: order i-th item  
+        """
+        return self.__items[i]
 
 class OrderItem:
     def __init__(self, _sku: str, _units: int):
@@ -73,10 +74,11 @@ class OrderItem:
     def get_sku(self):
         return self.__sku
 
-def customer_id_func(_o: Order) -> str:
+def customer_id_func(_o: Order) -> int:
     """
-    return lastname part of customer name, e.g. "Megan Cantrell" -> "Megan "Cantrell"
+    customer id getter, returns private customer identifier
+    return customer id of order
     :param _c: customer object
     :return: last name part of name attribute
     """
-    return _o.customer_id
+    return _o.get_customer_id()
