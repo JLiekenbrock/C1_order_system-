@@ -62,7 +62,7 @@ def print_orders(_customer_id: int):
     if _customer_id == -1:
         print("illegal customer")
     elif cds.find_customer_by_id(_customer_id):
-        _customer_orders = ods.filter(lambda c: customer_id_func(c) ==_customer_id)
+        _customer_orders = ods.filter(lambda o: customer_id_func(o) ==_customer_id)
         print(f"\n--> customer {_customer_id} has {len(_customer_orders)} orders")
     else:
         print( "no customer")
@@ -78,6 +78,7 @@ if __name__ == "__main__":
 
     # find customers in data store using find functions
     _c1 = cds.find_customer_by_id(898179)
+    print(type(_c1))
     print("customer 898179:", _c1.name if _c1 is not None else "not found")
 
     # find customers using filter functions on data stores
@@ -86,7 +87,21 @@ if __name__ == "__main__":
     _filtered_by_id = cds.filter(lambda c: c.get_id() == 898179 or c.get_id() == 192794)
     _filtered_by_name = cds.filter(lambda c: last_name_func(c) == _last_name)
     # print resulting customer list using the built-in map() function
+    list(map(lambda c: print(f" - {c.name}, {c.address}"), _filtered_by_id))
     list(map(lambda c: print(f" - {c.name}, {c.address}"), _filtered_by_name))
+
+    # find order in data store by id
+    _filtered_by_id = ods.filter(lambda o: o.get_id() == "00-784-33313" or o.get_id() == "00-184-40592")
+    list(map(lambda o: print(f" - {o.get_id()},{o.get_customer_id()},{o.get_date()},{o.items_count()}"), _filtered_by_id))
+    
+    # find stock in data store by id
+    _filtered_by_id = sds.filter(lambda o: o.get_sku() == "2208C002" or o.get_sku() == "0106C002")
+    list(map(lambda s: print(f" - {s.get_sku()},{s.description},{s.get_price()},{s.get_units_available()}"), _filtered_by_id))
+
+
+
+    # print resulting customer list using the built-in map() function
+
 
     # find all orders for each customer
     print_orders(258090)    # customer 258090: 2 orders with 1 item each

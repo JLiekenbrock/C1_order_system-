@@ -37,14 +37,14 @@ class Stock:
         """
         self.__price = _price
 
-    def get_units_availalbe(self) -> int:
+    def get_units_available(self) -> int:
         """
         units available getter, returns number of available units
         :return: number of available units
         """
         return self.__units_available
 
-    def has_units_availalbe(self) -> bool:
+    def has_units_available(self) -> bool:
         """
         units available getter, returns wheter units are available
         :return: are units availabe
