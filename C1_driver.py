@@ -21,6 +21,7 @@ def print_order_items(o: Order) -> int:
     :param o: order object
     :return: total value of order in cent
     """
+    print("oi")
     print(f"- order {o.get_id()} ({o.items_count()} item):")
     _order_value = 0
     #
@@ -38,6 +39,14 @@ def print_order_items(o: Order) -> int:
     #       print(f"  --> order value is: {float(_order_value / 100.0)}\n")
     #   - return order value
     #
+    for i in range(o.items_count()):
+        item = o.get_item(i)
+        stock = sds.find_stock_by_sku(item.get_sku())
+        print(stock.get_sku())
+        print(stock.get_price())
+        _order_value += stock.get_price()
+        print(stock.get_sku())
+    
     print(f"  --> order value is: {float(_order_value / 100.0)}")
     return _order_value
 
@@ -64,10 +73,13 @@ def print_orders(_customer_id: int):
     elif cds.find_customer_by_id(_customer_id):
         _customer_orders = ods.filter(lambda o: customer_id_func(o) ==_customer_id)
         print(f"\n--> customer {_customer_id} has {len(_customer_orders)} orders")
+        for o in _customer_orders:
+            print_order_items(o)
     else:
         print( "no customer")
         # ...
-    _total_order_value = 0  # TODO: compute _total_order_value
+      # TODO: compute _total_order_value
+    _total_order_value = 0
     print(f"==> total order value is: {float(_total_order_value / 100.0)}")
 
 
@@ -78,7 +90,6 @@ if __name__ == "__main__":
 
     # find customers in data store using find functions
     _c1 = cds.find_customer_by_id(898179)
-    print(type(_c1))
     print("customer 898179:", _c1.name if _c1 is not None else "not found")
 
     # find customers using filter functions on data stores
@@ -91,9 +102,11 @@ if __name__ == "__main__":
     list(map(lambda c: print(f" - {c.name}, {c.address}"), _filtered_by_name))
 
     # find order in data store by id
+    print("--> find orders by id")
     _filtered_by_id = ods.filter(lambda o: o.get_id() == "00-784-33313" or o.get_id() == "00-184-40592")
     list(map(lambda o: print(f" - {o.get_id()},{o.get_customer_id()},{o.get_date()},{o.items_count()}"), _filtered_by_id))
     
+    print("--> find stocks by id")
     # find stock in data store by id
     _filtered_by_id = sds.filter(lambda o: o.get_sku() == "2208C002" or o.get_sku() == "0106C002")
     list(map(lambda s: print(f" - {s.get_sku()},{s.description},{s.get_price()},{s.get_units_available()}"), _filtered_by_id))
