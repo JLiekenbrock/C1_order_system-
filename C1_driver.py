@@ -21,7 +21,6 @@ def print_order_items(o: Order) -> int:
     :param o: order object
     :return: total value of order in cent
     """
-    print("oi")
     print(f"- order {o.get_id()} ({o.items_count()} item):")
     _order_value = 0
     #

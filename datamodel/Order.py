@@ -9,7 +9,7 @@ class Order:
     between a selling business and a Customer
     """
 
-    def __init__(self, _id: str, _customer_id: int, _date: datetime = datetime.now()):
+    def __init__(self, _id: str, _customer_id: int, _item: OrderItem, _date: datetime = datetime.now() ):
         """
         Constructor
         :param _id: stock keeping unit (SKU) (private, final, cannot be altered)
@@ -20,6 +20,7 @@ class Order:
         self.__customer_id = _customer_id
         self.__date = _date
         self.__items = []
+        self.__items.append(_item)
 
     def get_id(self) -> int:
         """

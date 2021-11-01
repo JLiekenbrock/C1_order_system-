@@ -1,6 +1,7 @@
 from collections import Iterable
 from C1_order_system.datastore import CustomerDataStore, StockDataStore, OrderDataStore, DataFactory
 import C1_order_system.datamodel as dm
+from C1_order_system.datamodel import OrderItem
 
 
 class DataFactory:
@@ -63,5 +64,6 @@ class DataFactory:
         if len(_t) >= 1:
             _order_id = str(_t[0])  # cast to int (to make sure it's int)
             _customer_id = int(_t[1])
-            _order_entity = dm.Order(_order_id, _customer_id)
+            _items = OrderItem(str(_t[2]),int(_t[3]))
+            _order_entity = dm.Order(_order_id, _customer_id,_items)
             self.__order_ds.add_order(_order_entity)

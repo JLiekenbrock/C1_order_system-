@@ -1,4 +1,4 @@
-from C1_order_system.datamodel import Order
+from C1_order_system.datamodel import Order, OrderItem
 
 
 class OrderDataStore:
