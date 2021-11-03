@@ -19,8 +19,7 @@ class Order:
         self.__id = _id                   # private, final attribute, cannot be altered
         self.__customer_id = _customer_id
         self.__date = _date
-        self.__items = []
-        self.__items.append(_item)
+        self.__items = [_item]
 
     def get_id(self) -> int:
         """

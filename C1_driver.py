@@ -39,14 +39,14 @@ def print_order_items(o: Order) -> int:
     #   - return order value
     #
     for i in range(o.items_count()):
-        item = o.get_item(i)
-        stock = sds.find_stock_by_sku(item.get_sku())
-        print(stock.get_sku())
-        print(stock.get_price())
-        _order_value += stock.get_price()
-        print(stock.get_sku())
+        oi = o.get_item(i)
+        s = sds.find_stock_by_sku(oi.get_sku())
+        value = float(oi.units*s.get_price())
+        print(f"    - {oi.units} x {s.description} = {value}")
+        _order_value += value
     
-    print(f"  --> order value is: {float(_order_value / 100.0)}")
+    print(f"    -->  order value is: {_order_value}")
+
     return _order_value
 
 
@@ -67,19 +67,17 @@ def print_orders(_customer_id: int):
     #
     # _customer_orders = []  # TODO: look up orders
 
-    if _customer_id == -1:
-        print("illegal customer")
-    elif cds.find_customer_by_id(_customer_id):
-        _customer_orders = ods.filter(lambda o: customer_id_func(o) ==_customer_id)
-        print(f"\n--> customer {_customer_id} has {len(_customer_orders)} orders")
-        for o in _customer_orders:
-            print_order_items(o)
-    else:
-        print( "no customer")
-        # ...
-      # TODO: compute _total_order_value
     _total_order_value = 0
-    print(f"==> total order value is: {float(_total_order_value / 100.0)}")
+
+   
+    cds.find_customer_by_id(_customer_id)
+    _customer_orders = ods.filter(lambda o: customer_id_func(o) ==_customer_id)
+    print(f"\n--> customer {_customer_id} has {len(_customer_orders)} orders")
+    for o in _customer_orders:
+        value = print_order_items(o)
+        _total_order_value += value
+        # ...
+    print(f"==> total order value is: {_total_order_value}")
 
 
 if __name__ == "__main__":

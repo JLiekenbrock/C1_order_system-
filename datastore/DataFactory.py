@@ -62,8 +62,14 @@ class DataFactory:
     def __add_order_from_tuple(self, _t: ()):
         # sample tuple: ('00-937-09641', 714268, '2520A015', 1, 'EF 135mm f/2L USM ')
         if len(_t) >= 1:
-            _order_id = str(_t[0])  # cast to int (to make sure it's int)
-            _customer_id = int(_t[1])
-            _items = OrderItem(str(_t[2]),int(_t[3]))
-            _order_entity = dm.Order(_order_id, _customer_id,_items)
-            self.__order_ds.add_order(_order_entity)
+            _order = self.__order_ds.find_order_by_id(str(_t[0]))
+            if _order == None:
+                _order_id = str(_t[0])  # cast to int (to make sure it's int)
+                _customer_id = int(_t[1])
+                _items = OrderItem(str(_t[2]),int(_t[3]))
+                _order_entity = dm.Order(_order_id, _customer_id,_items)
+                self.__order_ds.add_order(_order_entity)
+            else:
+                print(_order.get_customer_id())
+                print(_order.items_count())
+                _order.add_item(str(_t[2]),int(_t[3]))

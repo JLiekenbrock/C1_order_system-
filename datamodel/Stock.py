@@ -54,9 +54,11 @@ class Stock:
     def transact_units(self, _n: int) -> bool:
         """
         transact units
-        :return: are units availabe
+        :return: wether transaction finished
         """
-        return self.__units_available > 0
+        valid = self.__units_available >= _n
+        if valid:
+            self.__units_available -= _n   
+        return valid  
 
-    # TODO: complete class
 
