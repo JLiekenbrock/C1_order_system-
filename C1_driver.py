@@ -93,6 +93,9 @@ if __name__ == "__main__":
     print("c) What enables function chaining in DataFactory’s import‐functions?")
     print("The use of the dot operator in combination with the fact, that these functions return the object itself.")
 
+    print("\n 5. Refer to CustomerDataStore.py and complete the implementations in Stock‐ und OrderDataStore.py and the import functions in DataFactory. Successful implementations should produce output:" )
+    print(f"--> {cds.size()} customers, {sds.size()} stock items, {ods.size()} " "orders loaded.")
+    
     print("\n 6.) Complete the implementations of Stock.py and Order.py classes in the datamodel package. Refer to class Customer.py for a complete implementation.")
     # find order in data store by id
     print("--> find orders by id")
