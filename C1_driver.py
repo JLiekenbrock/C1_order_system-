@@ -84,6 +84,12 @@ if __name__ == "__main__":
 
 
     print("\n 3.) Understand the role of the top‐level __init__.py file and answer questions:")
+    print("a) How long do DataStore objects exist that are referenced by cds, sds and ods variables?")
+    print("As long as the runtime of the main function is. The objects are reinitialised at every run.")
+    print("b) What could be the reason that no global reference variable was used for DataFactory?")
+    
+    print("c) What enables function chaining in DataFactory’s import‐functions?")
+    print("The use of the dot operator in combination with the fact, that these functions return the object itself.")
 
     print("\n 6.) Complete the implementations of Stock.py and Order.py classes in the datamodel package. Refer to class Customer.py for a complete implementation.")
     # find order in data store by id
