@@ -3,13 +3,14 @@
 a) How long do DataStore objects exist that are referenced by cds, sds and ods variables?
 As long as the runtime of the main function is. The objects are reinitialised at every run.
 b) What could be the reason that no global reference variable was used for DataFactory?
+The reference is not needed because it is just used for instantiating the datastore objects using chaining.
 c) What enables function chaining in DataFactory’s import‐functions?
 The use of the dot operator in combination with the fact, that these functions return the object itself.
 
  6.) Complete the implementations of Stock.py and Order.py classes in the datamodel package. Refer to class Customer.py for a complete implementation.
 --> find orders by id
- - 00-784-33313,862466,2021-11-04 11:43:55.326409,1
- - 00-184-40592,952417,2021-11-04 11:43:55.326409,1
+ - 00-784-33313,862466,2021-11-04 12:52:29.069756,1
+ - 00-184-40592,952417,2021-11-04 12:52:29.069756,1
 --> find stocks by id
  - 2208C002,PowerShot G1 X Mark III,1199,9
  - 0106C002,PowerShot G3 X,899,137
