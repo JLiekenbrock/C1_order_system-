@@ -81,7 +81,9 @@ def print_orders(_customer_id: int):
 
 
 if __name__ == "__main__":
-
+    orig_stdout = sys.stdout
+    f = open('output.txt', 'w')
+    sys.stdout = f
 
     print("\n 3.) Understand the role of the top‐level __init__.py file and answer questions:")
     print("a) How long do DataStore objects exist that are referenced by cds, sds and ods variables?")
@@ -135,3 +137,6 @@ if __name__ == "__main__":
     print_orders(973407)    # customer 973407: 0 orders, is customer
     print_orders(333333)    # customer 333333: 0 orders, not a customer
     print_orders(-1)        # customer -1: illegal customer id
+
+    sys.stdout = orig_stdout
+    f.close()
