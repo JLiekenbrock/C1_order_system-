@@ -70,6 +70,4 @@ class DataFactory:
                 _order_entity = dm.Order(_order_id, _customer_id,_items)
                 self.__order_ds.add_order(_order_entity)
             else:
-                print(_order.get_customer_id())
-                print(_order.items_count())
                 _order.add_item(str(_t[2]),int(_t[3]))

@@ -81,6 +81,23 @@ def print_orders(_customer_id: int):
 
 
 if __name__ == "__main__":
+
+
+    print("\n 3.) Understand the role of the top‐level __init__.py file and answer questions:")
+
+    print("\n 6.) Complete the implementations of Stock.py and Order.py classes in the datamodel package. Refer to class Customer.py for a complete implementation.")
+    # find order in data store by id
+    print("--> find orders by id")
+    _filtered_by_id = ods.filter(lambda o: o.get_id() == "00-784-33313" or o.get_id() == "00-184-40592")
+    list(map(lambda o: print(f" - {o.get_id()},{o.get_customer_id()},{o.get_date()},{o.items_count()}"), _filtered_by_id))
+    
+    print("--> find stocks by id")
+    # find stock in data store by id
+    _filtered_by_id = sds.filter(lambda o: o.get_sku() == "2208C002" or o.get_sku() == "0106C002")
+    list(map(lambda s: print(f" - {s.get_sku()},{s.description},{s.get_price()},{s.get_units_available()}"), _filtered_by_id))
+
+    print("\n 7.) Complete the implementations of functions in C1_driver.py :")
+
     # print number of orders in OrderStore and CustomerStore
     print(f"{len(ods.find_all_orders())} orders in OrderStore")
     print(f"{len(cds.find_all_customers())} customers in CustomerStore")
@@ -92,26 +109,17 @@ if __name__ == "__main__":
     # find customers using filter functions on data stores
     _last_name = "Cantrell"
     print(f"--> find customers with last name '{_last_name}':")
+
     _filtered_by_id = cds.filter(lambda c: c.get_id() == 898179 or c.get_id() == 192794)
     _filtered_by_name = cds.filter(lambda c: last_name_func(c) == _last_name)
     # print resulting customer list using the built-in map() function
     list(map(lambda c: print(f" - {c.name}, {c.address}"), _filtered_by_id))
     list(map(lambda c: print(f" - {c.name}, {c.address}"), _filtered_by_name))
 
-    # find order in data store by id
-    print("--> find orders by id")
-    _filtered_by_id = ods.filter(lambda o: o.get_id() == "00-784-33313" or o.get_id() == "00-184-40592")
-    list(map(lambda o: print(f" - {o.get_id()},{o.get_customer_id()},{o.get_date()},{o.items_count()}"), _filtered_by_id))
-    
-    print("--> find stocks by id")
-    # find stock in data store by id
-    _filtered_by_id = sds.filter(lambda o: o.get_sku() == "2208C002" or o.get_sku() == "0106C002")
-    list(map(lambda s: print(f" - {s.get_sku()},{s.description},{s.get_price()},{s.get_units_available()}"), _filtered_by_id))
-
-
+  
 
     # print resulting customer list using the built-in map() function
-
+    print("\n 8.) Test your code with the following customer ids (remove comments in C1_driver.py):")
 
     # find all orders for each customer
     print_orders(258090)    # customer 258090: 2 orders with 1 item each
